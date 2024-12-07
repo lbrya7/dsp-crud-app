@@ -1,9 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const Cohort = require('../models/Cohort'); // Import the Cohort model
 
-// Example route for fetching all cohorts
-router.get('/cohorts', (req, res) => {
-    res.send('Fetching all cohorts');
+// GET all cohorts
+router.get('/cohorts', async (req, res) => {
+    try {
+        const cohorts = await Cohort.find(); // Fetch all documents in the cohorts collection
+        res.json(cohorts); // Respond with the data in JSON format
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching cohorts', error });
+    }
 });
 
 // Example route for creating a new cohort
