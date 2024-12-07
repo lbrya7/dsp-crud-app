@@ -1,14 +1,12 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); // Import Mongoose
 
-// Define the Cohort schema
+// Define the schema for a Cohort document
 const CohortSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    year: { type: Number, required: true },
-    members: { type: [String], required: true },
+    name: { type: String, required: true }, // Cohort name (e.g., "Cohort 1")
+    year: { type: Number, required: true }, // Year the cohort started (e.g., 2021)
+    members: { type: [String], default: [] } // List of member names (e.g., ["Larry", "Shaun"])
 });
 
-// Create the Cohort model
-const Cohort = mongoose.model('Cohort', CohortSchema);
-
-module.exports = Cohort;
+// Create and export the Cohort model
+module.exports = mongoose.model('Cohort', CohortSchema);
 
